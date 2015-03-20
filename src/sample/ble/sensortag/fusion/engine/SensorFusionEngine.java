@@ -45,7 +45,8 @@ public class SensorFusionEngine extends TimerTask {
     private static final float EPSILON = 0.000000001f;
     private static final float NS2S = 1.0f / 1000000000.0f;
 
-    private static final float FILTER_COEFFICIENT = 0.98f;
+    //private static final float FILTER_COEFFICIENT = 0.98f;
+    private static final float FILTER_COEFFICIENT = 1.0f;
 
     /**
      * Angular speeds from gyro

@@ -1,6 +1,7 @@
 package sample.ble.sensortag.fusion;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import rajawali.Object3D;
@@ -31,12 +32,19 @@ public class SensorFusionFragment extends GlFragment implements ISensorManager.S
                 return;
 
             final double[] patchedOrientation = sensorManager.patchSensorFusion(orientation);
-            model.setRotation(patchedOrientation[0], patchedOrientation[1], patchedOrientation[2]);
+            //model.setRotation(patchedOrientation[0], patchedOrientation[1], patchedOrientation[2]);
+            model.setX(-10 * orientation[0]);
+            model.setY(-10 * orientation[1]);
+            model.setRotZ(-60 * orientation[2]);
+            //model.setY(10 * orientation[1]);
+            final double x = model.getX();
+            Log.v("TAG", String.format("%+.6f", model.getX()));
+
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     viewFused.setText(String.format("%+.6f\n%+.6f\n%+.6f",
-                                      orientation[0], orientation[1], orientation[2]));
+                                      x, orientation[1], orientation[2]));
                 }
             });
         }
